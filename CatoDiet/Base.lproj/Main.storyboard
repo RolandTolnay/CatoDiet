@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cato Diet-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="CatoDiet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdw-qi-8np" customClass="RoundButton" customModule="CatoDiet" customModuleProvider="target">
+                                <rect key="frame" x="24" y="248.5" width="366" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="zQ6-fv-tzb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="Add Meal"/>
+                                <connections>
+                                    <action selector="onFeedTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dDn-un-3rr"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cde-cS-QfK">
+                                <rect key="frame" x="266" y="68" width="124" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Qid-wC-P64"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ggs-cH-sbn">
+                                <rect key="frame" x="0.0" y="324.5" width="414" height="537.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="separatorColor" red="0.37647058823529411" green="0.74901960784313726" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MealCell" rowHeight="88" id="YtQ-dv-XAE" customClass="MealCell" customModule="CatoDiet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YtQ-dv-XAE" id="R3p-YV-MN9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="h39-Ds-wWC">
+                                                    <rect key="frame" x="339" y="8" width="51" height="72"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGc-tQ-KmZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="51" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="hle-1S-jYr"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfX-V1-BOi">
+                                                            <rect key="frame" x="16.5" y="38" width="34.5" height="34"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfp-64-e6g">
+                                                    <rect key="frame" x="28" y="19" width="36" height="50"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="h39-Ds-wWC" secondAttribute="bottom" constant="8" id="6Hr-jo-t2N"/>
+                                                <constraint firstItem="h39-Ds-wWC" firstAttribute="top" secondItem="R3p-YV-MN9" secondAttribute="top" constant="8" id="A2W-Lc-0xG"/>
+                                                <constraint firstItem="Dfp-64-e6g" firstAttribute="leading" secondItem="R3p-YV-MN9" secondAttribute="leadingMargin" constant="8" id="Zu7-or-Dxa"/>
+                                                <constraint firstAttribute="trailing" secondItem="h39-Ds-wWC" secondAttribute="trailing" constant="24" id="aMz-5V-9v6"/>
+                                                <constraint firstItem="Dfp-64-e6g" firstAttribute="top" secondItem="R3p-YV-MN9" secondAttribute="topMargin" constant="8" id="dZw-0C-jeM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Dfp-64-e6g" secondAttribute="bottom" constant="8" id="qoN-li-me1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="Dfp-64-e6g" id="20h-Oe-1oJ"/>
+                                            <outlet property="foodLabel" destination="iGc-tQ-KmZ" id="PJY-Ya-BjU"/>
+                                            <outlet property="userLabel" destination="LfX-V1-BOi" id="Qwv-Gw-YwL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add food name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b1z-8R-7Gf">
+                                <rect key="frame" x="24" y="160.5" width="366" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="u49-DX-7Ac"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Kdw-qi-8np" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="42A-lp-XJk"/>
+                            <constraint firstItem="Ggs-cH-sbn" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="81g-3t-5dO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ggs-cH-sbn" secondAttribute="trailing" id="9Ql-ak-s9D"/>
+                            <constraint firstItem="cde-cS-QfK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="9wS-RU-KfE"/>
+                            <constraint firstItem="Ggs-cH-sbn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AT9-Hk-Oaa"/>
+                            <constraint firstItem="Ggs-cH-sbn" firstAttribute="top" secondItem="Kdw-qi-8np" secondAttribute="bottom" constant="16" id="HAt-tQ-ZBh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kdw-qi-8np" secondAttribute="trailing" constant="24" id="SNr-KD-vBz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cde-cS-QfK" secondAttribute="trailing" constant="24" id="Tnt-fB-VfW"/>
+                            <constraint firstItem="Kdw-qi-8np" firstAttribute="top" secondItem="b1z-8R-7Gf" secondAttribute="bottom" constant="48" id="dve-pG-G0u"/>
+                            <constraint firstItem="b1z-8R-7Gf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="iKO-xI-vww"/>
+                            <constraint firstItem="Ggs-cH-sbn" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="jn3-fD-LlV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b1z-8R-7Gf" secondAttribute="trailing" constant="24" id="sFc-OD-FpB"/>
+                            <constraint firstItem="cde-cS-QfK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.3" id="yMx-nI-hZO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cato Diet" id="xwg-qM-jMP"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="cde-cS-QfK" id="J2o-HH-DOL"/>
+                        <outlet property="feedButton" destination="Kdw-qi-8np" id="vjz-wX-okg"/>
+                        <outlet property="foodTextField" destination="b1z-8R-7Gf" id="cGo-UQ-nU0"/>
+                        <outlet property="tableView" destination="Ggs-cH-sbn" id="uCM-6H-9KW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="113.83928571428571"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="3vF-dc-PJF">
+            <objects>
+                <viewController storyboardIdentifier="RegisterViewController" id="b9l-5N-usP" customClass="RegisterViewController" customModule="CatoDiet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uug-Wl-OD5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8Ww-te-szi">
+                                <rect key="frame" x="24" y="302.5" width="366" height="91.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0M-sH-B6R">
+                                        <rect key="frame" x="0.0" y="0.0" width="164" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FcO-g8-7RL">
+                                        <rect key="frame" x="0.0" y="43.5" width="366" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Fy0-xT-cfh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="FcO-g8-7RL" firstAttribute="leading" secondItem="8Ww-te-szi" secondAttribute="leading" id="7jL-HD-nXm"/>
+                                    <constraint firstAttribute="trailing" secondItem="FcO-g8-7RL" secondAttribute="trailing" id="d26-DU-kk6"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78e-6P-OSv" customClass="RoundButton" customModule="CatoDiet" customModuleProvider="target">
+                                <rect key="frame" x="127" y="418" width="160" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="BVP-aN-GvX"/>
+                                    <constraint firstAttribute="width" constant="160" id="M7x-5t-ukw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="onNextTapped:" destination="b9l-5N-usP" eventType="touchUpInside" id="jiH-UT-CvQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8Ww-te-szi" firstAttribute="leading" secondItem="T6l-Ug-KJB" secondAttribute="leading" constant="24" id="3Ny-8p-XDX"/>
+                            <constraint firstItem="T6l-Ug-KJB" firstAttribute="trailing" secondItem="8Ww-te-szi" secondAttribute="trailing" constant="24" id="JX2-f6-nbO"/>
+                            <constraint firstItem="78e-6P-OSv" firstAttribute="centerX" secondItem="uug-Wl-OD5" secondAttribute="centerX" id="Wxb-VP-Xck"/>
+                            <constraint firstItem="78e-6P-OSv" firstAttribute="top" secondItem="8Ww-te-szi" secondAttribute="bottom" constant="24" id="aUp-C3-ADd"/>
+                            <constraint firstItem="8Ww-te-szi" firstAttribute="centerY" secondItem="uug-Wl-OD5" secondAttribute="centerY" constant="-100" id="ozi-l9-j8Y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="T6l-Ug-KJB"/>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="78e-6P-OSv" id="1BH-pP-xzX"/>
+                        <outlet property="usernameTextField" destination="FcO-g8-7RL" id="PFF-VZ-yyk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rcv-cN-l8X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2037.68115942029" y="113.83928571428571"/>
+        </scene>
+    </scenes>
+</document>
