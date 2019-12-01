@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3821D0AF23944B9600BFEA91 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3821D0AE23944B9600BFEA91 /* SettingsViewController.swift */; };
 		384FC2F423930B1300BF208E /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384FC2F323930B1300BF208E /* RoundButton.swift */; };
 		384FC2F82393A35800BF208E /* GradientBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384FC2F72393A35800BF208E /* GradientBarControl.swift */; };
 		3899A5D22392E16C00FD820C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3899A5D12392E16C00FD820C /* GoogleService-Info.plist */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3821D0AE23944B9600BFEA91 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		384FC2F323930B1300BF208E /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		384FC2F72393A35800BF208E /* GradientBarControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBarControl.swift; sourceTree = "<group>"; };
 		3899A5D12392E16C00FD820C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				3899A5DD2392E62F00FD820C /* Model.swift */,
 				3899A5DF2392E98800FD820C /* RegisterViewController.swift */,
 				38C0C40F2392E014008F1D15 /* HomeViewController.swift */,
+				3821D0AE23944B9600BFEA91 /* SettingsViewController.swift */,
 				3899A5D32392E29200FD820C /* FirebaseService.swift */,
 				3899A5DB2392E35D00FD820C /* View */,
 				38C0C4112392E014008F1D15 /* Main.storyboard */,
@@ -259,6 +262,7 @@
 				384FC2F423930B1300BF208E /* RoundButton.swift in Sources */,
 				3899A5DE2392E62F00FD820C /* Model.swift in Sources */,
 				3899A5DA2392E33700FD820C /* DesignableView.swift in Sources */,
+				3821D0AF23944B9600BFEA91 /* SettingsViewController.swift in Sources */,
 				38C306272393C2AC00127B73 /* SuffixTextField.swift in Sources */,
 				3899A5D42392E29200FD820C /* FirebaseService.swift in Sources */,
 			);

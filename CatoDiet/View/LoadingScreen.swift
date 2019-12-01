@@ -37,6 +37,8 @@ class LoadingScreen: DesignableView {
     backgroundColor = .white
     alpha = 0.6
     translatesAutoresizingMaskIntoConstraints = false
+
+    activityIndicator.color = .appMain
   }
 
   func toggle(isLoading: Bool) {

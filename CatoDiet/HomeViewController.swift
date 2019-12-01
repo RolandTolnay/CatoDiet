@@ -13,28 +13,60 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var foodTextField: UITextField!
   @IBOutlet private weak var feedButton: RoundButton!
   @IBOutlet private weak var tableView: UITableView!
-  @IBOutlet weak var amountTextField: UITextField!
-  @IBOutlet weak var amountBarControl: GradientBarControl!
+  @IBOutlet private weak var amountTextField: UITextField!
+  @IBOutlet private weak var amountBarControl: GradientBarControl!
+  @IBOutlet private weak var remainderLabel: UILabel!
 
   private lazy var loadingScreen = LoadingScreen(in: view)
   private var user: User?
-  private var meals = [Meal]()
+  private var meals = [Meal]() {
+    didSet {
+      DispatchQueue.main.async {
+        self.remainderLabel.text = "Remaining for today: \(max((self.target ?? 0) - self.consumed, 0)) g"
+      }
+    }
+  }
+  private var target: Int? {
+    didSet {
+      DispatchQueue.main.async {
+        self.remainderLabel.text = self.target.map { "Remaining for today: \(max($0 - self.consumed, 0)) g" } ?? ""
+        UIView.animate(withDuration: 0.3) {
+          self.remainderLabel.alpha = self.target == nil ? 0 : 1
+        }
+        self.amountBarControl.maxValue = Double(self.target ?? 0)
+        self.amountBarControl.setNeedsDisplay()
+      }
+    }
+  }
+  private var consumed: Int {
+    meals.reduce(into: 0) {
+      if Calendar.current.isDateInToday($1.date) {
+        $0 += $1.amount
+      }
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     FirebaseService.shared.delegate = self
     setupTableView()
-    setupTextFields()
+    setupInputs()
     hideKeyboardWhenTappedAround()
     updateFeedEnabled()
-    loadingScreen.changeActivityIndicatorColor(to: .appMain)
+    remainderLabel.alpha = 0
 
-    amountBarControl.value = 15
-    amountBarControl.onValueChanged = { [weak self] amount in
-      self?.amountTextField.text = "\(Int(amount))"
-      self?.updateFeedEnabled()
-    }
+    remainderLabel.isUserInteractionEnabled = true
+    let tapGR = UITapGestureRecognizer(target: self, action: #selector(onRemainderTapped))
+    remainderLabel.addGestureRecognizer(tapGR)
+  }
+
+  @objc private func onRemainderTapped() {
+
+    let stripped = remainderLabel.text?.replacingOccurrences(of: "Remaining for today: ", with: "")
+    let double = stripped?.replacingOccurrences(of: " g", with: "")
+    amountBarControl.value = Double(double ?? "") ?? 0
+    amountTextField.text = "\(Int(amountBarControl.value))"
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +83,10 @@ class HomeViewController: UIViewController {
         return
       }
       self.user = user
-      self.reloadMeals()
+      FirebaseService.shared.targetFoodIntake {
+        self.target = $0
+        self.reloadMeals()
+      }
     }
   }
 
@@ -70,7 +105,13 @@ class HomeViewController: UIViewController {
                                         for: .valueChanged)
   }
 
-  private func setupTextFields() {
+  private func setupInputs() {
+
+    amountBarControl.value = 15
+    amountBarControl.onValueChanged = { [weak self] amount in
+      self?.amountTextField.text = "\(Int(amount))"
+      self?.updateFeedEnabled()
+    }
 
     foodTextField.addTarget(self,
                             action: #selector(updateFeedEnabled),
@@ -82,6 +123,9 @@ class HomeViewController: UIViewController {
     amountTextField.text = "\(Int(amountBarControl.value))"
     amountTextField.tintColor = .appMain
     amountTextField.textColor = .appMain
+    amountTextField.addTarget(self,
+                              action: #selector(onAmountEditingEnded),
+                              for: .editingDidEnd)
   }
 
   @IBAction func onFeedTapped(_ sender: Any) {
@@ -106,6 +150,18 @@ class HomeViewController: UIViewController {
     }
   }
 
+  @IBAction func onSettingsTapped(_ sender: Any) {
+
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    if let settingsVC = storyboard.instantiateViewController(withIdentifier: "\(SettingsViewController.self)") as? SettingsViewController {
+
+      settingsVC.onTargetChanged = { [weak self] target in
+        self?.target = target
+      }
+      present(settingsVC, animated: true, completion: nil)
+    }
+  }
+
   @objc private func updateFeedEnabled() {
     feedButton.isEnabled = user != nil
       && !(foodTextField.text ?? "").isEmpty
@@ -122,6 +178,14 @@ class HomeViewController: UIViewController {
         self.tableView.refreshControl?.endRefreshing()
         self.tableView.reloadData()
       }
+    }
+  }
+
+  @objc private func onAmountEditingEnded() {
+
+    if let amount = Int(amountTextField.text ?? "") {
+      amountTextField.text = "\(amount.clamped(to: 0...(target ?? 0)))"
+      amountBarControl.value = Double(Int(amountTextField.text ?? "")!)
     }
   }
 }

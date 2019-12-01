@@ -20,6 +20,7 @@ class FirebaseService {
   private lazy var db = Firestore.firestore()
   private lazy var users = db.collection("users")
   private lazy var meals = db.collection("meals")
+  private lazy var settings = db.collection("settings")
 
   func authenticate(completion: @escaping (User?) -> Void) {
 
@@ -85,6 +86,26 @@ class FirebaseService {
         error.map { print("Failed deleting meal: \($0.localizedDescription)") }
         completion(error?.localizedDescription)
       }
+    }
+  }
+
+  func targetFoodIntake(completion: @escaping (Int?) -> Void) {
+
+    let target = settings.document("targetFoodIntake")
+    target.getDocument { (snapshot, error) in
+
+      error.map { print("Failed getting target food- intake: \($0.localizedDescription)") }
+      completion(snapshot?.data()?["value"] as? Int)
+    }
+  }
+
+  func setTargetFoodIntake(_ target: Int, completion: @escaping (String?) -> Void) {
+
+    let ref = settings.document("targetFoodIntake")
+    ref.setData(["value": target]) { error in
+
+      error.map { print("Failed setting target food- intake: \($0.localizedDescription)") }
+      completion(error?.localizedDescription)
     }
   }
 }

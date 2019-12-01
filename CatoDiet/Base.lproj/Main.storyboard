@@ -155,14 +155,28 @@
                                         <color key="textColor" red="0.33333333329999998" green="0.33725490200000002" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCk-Yj-Lh7">
+                                        <rect key="frame" x="358" y="24" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="S3h-rQ-HwU"/>
+                                            <constraint firstAttribute="width" constant="32" id="T8G-BD-6yH"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.36862745099999999" green="0.72549019609999998" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="settings"/>
+                                        <connections>
+                                            <action selector="onSettingsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Vr-yt-sZd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="bOa-vc-KYZ" secondAttribute="trailing" constant="24" id="OTg-uU-W5r"/>
+                                    <constraint firstItem="BCk-Yj-Lh7" firstAttribute="top" secondItem="e1x-7x-VVv" secondAttribute="top" constant="24" id="Pd2-P3-Scd"/>
                                     <constraint firstItem="bOa-vc-KYZ" firstAttribute="centerY" secondItem="e1x-7x-VVv" secondAttribute="centerY" id="dGN-y6-zbZ"/>
                                     <constraint firstItem="xjV-e3-ua2" firstAttribute="top" secondItem="e1x-7x-VVv" secondAttribute="top" constant="24" id="mmz-tv-hxn"/>
                                     <constraint firstItem="bOa-vc-KYZ" firstAttribute="leading" secondItem="e1x-7x-VVv" secondAttribute="leading" constant="24" id="noY-al-hQJ"/>
                                     <constraint firstItem="xjV-e3-ua2" firstAttribute="leading" secondItem="e1x-7x-VVv" secondAttribute="leading" constant="24" id="ocE-Jj-QvM"/>
+                                    <constraint firstAttribute="trailing" secondItem="BCk-Yj-Lh7" secondAttribute="trailing" constant="24" id="wrV-KJ-YdG"/>
                                     <constraint firstAttribute="trailing" secondItem="xjV-e3-ua2" secondAttribute="trailing" constant="24" id="zyt-iK-Hxd"/>
                                 </constraints>
                             </view>
@@ -189,12 +203,61 @@
                         <outlet property="amountTextField" destination="RJZ-Yz-X24" id="vUH-uj-MIt"/>
                         <outlet property="feedButton" destination="Kdw-qi-8np" id="vjz-wX-okg"/>
                         <outlet property="foodTextField" destination="b1z-8R-7Gf" id="cGo-UQ-nU0"/>
+                        <outlet property="remainderLabel" destination="FVr-hf-Htb" id="RF8-wj-RpZ"/>
                         <outlet property="tableView" destination="Ggs-cH-sbn" id="uCM-6H-9KW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="113.83928571428571"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="PTI-h0-H69">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="uou-KB-tig" customClass="SettingsViewController" customModule="CatoDiet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JHb-cw-ePP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target food-intake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-Qh-ruq">
+                                <rect key="frame" x="24" y="427" width="266" height="42"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="34"/>
+                                <color key="textColor" red="0.33333333329999998" green="0.33725490200000002" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeJ-Dy-xDd">
+                                <rect key="frame" x="371" y="427" width="19" height="42"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="34"/>
+                                <color key="textColor" red="0.36862745099999999" green="0.72549019609999998" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="99" textAlignment="right" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="vO1-Ub-2lx">
+                                <rect key="frame" x="306" y="427" width="61" height="42"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="34"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wDH-Qh-ruq" firstAttribute="leading" secondItem="8Ty-WM-X10" secondAttribute="leading" constant="24" id="0tl-pr-TAm"/>
+                            <constraint firstItem="wDH-Qh-ruq" firstAttribute="centerY" secondItem="JHb-cw-ePP" secondAttribute="centerY" id="HTT-nN-ABB"/>
+                            <constraint firstItem="vO1-Ub-2lx" firstAttribute="top" secondItem="wDH-Qh-ruq" secondAttribute="top" id="PbJ-73-KlQ"/>
+                            <constraint firstItem="vO1-Ub-2lx" firstAttribute="bottom" secondItem="wDH-Qh-ruq" secondAttribute="bottom" id="SxV-9P-zf4"/>
+                            <constraint firstItem="vO1-Ub-2lx" firstAttribute="leading" secondItem="wDH-Qh-ruq" secondAttribute="trailing" constant="16" id="bDR-ed-4Fq"/>
+                            <constraint firstItem="8Ty-WM-X10" firstAttribute="trailing" secondItem="FeJ-Dy-xDd" secondAttribute="trailing" constant="24" id="jAH-xx-04J"/>
+                            <constraint firstItem="FeJ-Dy-xDd" firstAttribute="leading" secondItem="vO1-Ub-2lx" secondAttribute="trailing" constant="4" id="obV-lt-sBH"/>
+                            <constraint firstItem="FeJ-Dy-xDd" firstAttribute="bottom" secondItem="vO1-Ub-2lx" secondAttribute="bottom" id="vaQ-3L-KKA"/>
+                            <constraint firstItem="FeJ-Dy-xDd" firstAttribute="top" secondItem="vO1-Ub-2lx" secondAttribute="top" id="wcd-bL-Qnx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Ty-WM-X10"/>
+                    </view>
+                    <connections>
+                        <outlet property="targetTextField" destination="vO1-Ub-2lx" id="jYm-y4-KMh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0rS-VL-plF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="114"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="3vF-dc-PJF">
@@ -257,7 +320,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcv-cN-l8X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2037.68115942029" y="113.83928571428571"/>
+            <point key="canvasLocation" x="2499" y="115"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="256" height="256"/>
+    </resources>
 </document>
