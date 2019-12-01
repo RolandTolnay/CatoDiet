@@ -11,9 +11,10 @@ import UIKit
 class HomeViewController: UIViewController {
 
   @IBOutlet private weak var foodTextField: UITextField!
-  @IBOutlet private weak var amountTextField: UITextField!
   @IBOutlet private weak var feedButton: RoundButton!
   @IBOutlet private weak var tableView: UITableView!
+  @IBOutlet weak var amountTextField: UITextField!
+  @IBOutlet weak var amountBarControl: GradientBarControl!
 
   private lazy var loadingScreen = LoadingScreen(in: view)
   private var user: User?
@@ -22,21 +23,17 @@ class HomeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    tableView.dataSource = self
-    tableView.delegate = self
-    tableView.tableFooterView = UIView()
     FirebaseService.shared.delegate = self
-    foodTextField.addTarget(self,
-                            action: #selector(updateFeedEnabled),
-                            for: .editingChanged)
-    amountTextField.addTarget(self,
-                              action: #selector(updateFeedEnabled),
-                              for: .editingChanged)
+    setupTableView()
+    setupTextFields()
+    hideKeyboardWhenTappedAround()
     updateFeedEnabled()
 
-    foodTextField.addBottomBorder()
-    amountTextField.addBottomBorder()
-    hideKeyboardWhenTappedAround()
+    amountBarControl.value = 15
+    amountBarControl.onValueChanged = { [weak self] amount in
+      self?.amountTextField.text = "\(Int(amount))"
+      self?.updateFeedEnabled()
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -53,22 +50,42 @@ class HomeViewController: UIViewController {
         return
       }
       self.user = user
-
-      FirebaseService.shared.meals { meals in
-
-        self.meals = meals.sorted { $0.date > $1.date }
-        DispatchQueue.main.async {
-          self.loadingScreen.toggle(isLoading: false)
-          self.tableView.reloadData()
-        }
-      }
+      self.reloadMeals()
     }
+  }
+
+  private func setupTableView() {
+
+    tableView.dataSource = self
+    tableView.delegate = self
+    tableView.tableFooterView = UIView()
+    tableView.separatorColor = .appMain
+
+    let refreshControl = UIRefreshControl()
+    refreshControl.tintColor = .appMain
+    tableView.refreshControl = refreshControl
+    tableView.refreshControl?.addTarget(self,
+                                        action: #selector(reloadMeals),
+                                        for: .valueChanged)
+  }
+
+  private func setupTextFields() {
+
+    foodTextField.addTarget(self,
+                            action: #selector(updateFeedEnabled),
+                            for: .editingChanged)
+    foodTextField.addBottomBorder()
+    foodTextField.tintColor = .appMain
+
+    amountTextField.text = "\(Int(amountBarControl.value))"
+    amountTextField.tintColor = .appMain
+    amountTextField.textColor = .appMain
   }
 
   @IBAction func onFeedTapped(_ sender: Any) {
 
     let meal = Meal(food: foodTextField.text ?? "",
-                    amount: Int(amountTextField.text ?? "") ?? 0,
+                    amount: Int(amountBarControl.value),
                     date: Date(),
                     addedBy: user!)
     loadingScreen.toggle(isLoading: true)
@@ -80,19 +97,30 @@ class HomeViewController: UIViewController {
         if errorDescription == nil {
           self.meals.insert(meal, at: 0)
           self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+          self.foodTextField.text = ""
+          self.updateFeedEnabled()
         }
       }
     }
   }
 
-  private var isFeedEnabled: Bool {
-    user != nil
+  @objc private func updateFeedEnabled() {
+    feedButton.isEnabled = user != nil
       && !(foodTextField.text ?? "").isEmpty
-      && !(amountTextField.text ?? "").isEmpty
+      && amountBarControl.value > 0
   }
 
-  @objc private func updateFeedEnabled() {
-    feedButton.isEnabled = isFeedEnabled
+  @objc private func reloadMeals() {
+
+    FirebaseService.shared.meals { meals in
+
+      self.meals = meals.sorted { $0.date > $1.date }
+      DispatchQueue.main.async {
+        self.loadingScreen.toggle(isLoading: false)
+        self.tableView.refreshControl?.endRefreshing()
+        self.tableView.reloadData()
+      }
+    }
   }
 }
 
@@ -118,7 +146,8 @@ extension HomeViewController: UITableViewDelegate {
 
     tableView.deselectRow(at: indexPath, animated: true)
     foodTextField.text = meals[indexPath.row].food
-    amountTextField.text = "\(meals[indexPath.row].amount)"
+    amountBarControl.value = Double(meals[indexPath.row].amount)
+    amountTextField.text = "\(Int(amountBarControl.value))"
     updateFeedEnabled()
   }
 

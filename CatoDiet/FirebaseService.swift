@@ -75,7 +75,7 @@ class FirebaseService {
 
   func deleteMeal(_ meal: Meal, completion: @escaping (String?) -> Void) {
 
-    meals.getDocuments(source: .cache) { (snapshot, error) in
+    meals.getDocuments { (snapshot, error) in
 
       guard let document = snapshot?.documents.first(where: { Meal(dictionary: $0.data()) == meal })
       else { return completion("Failed deleting meal.") }

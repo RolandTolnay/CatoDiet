@@ -13,7 +13,7 @@ class RegisterViewController: UIViewController {
   var onUsernameProvided: ((String) -> Void)?
 
   @IBOutlet private weak var usernameTextField: UITextField!
-  @IBOutlet private weak var nextButton: UIButton!
+  @IBOutlet private weak var nextButton: RoundButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,6 +22,7 @@ class RegisterViewController: UIViewController {
     usernameTextField.addTarget(self,
                                 action: #selector(onUsernameChanged),
                                 for: .editingChanged)
+    usernameTextField.tintColor = .appTeal
     nextButton.isEnabled = false
     hideKeyboardWhenTappedAround()
   }

@@ -30,6 +30,7 @@ class RoundButton: UIButton {
         borderColor = disabledBorderColor
         setTitleColor(disabledFontColor, for: .disabled)
       }
+      layer.shadowColor = isEnabled ? shadowColor.cgColor : UIColor.clear.cgColor
     }
   }
 
@@ -51,6 +52,8 @@ class RoundButton: UIButton {
     set { layer.borderWidth = newValue }
   }
 
+  var shadowColor: UIColor = .black
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     customInit()
@@ -70,5 +73,9 @@ class RoundButton: UIButton {
     cornerRadius = 10
     borderWidth = 1
     borderColor = enabledBorderColor
+
+    layer.shadowColor = isEnabled ? shadowColor.cgColor : UIColor.clear.cgColor
+    layer.shadowOffset = CGSize(width: 2, height: 2)
+    layer.shadowOpacity = 0.4
   }
 }

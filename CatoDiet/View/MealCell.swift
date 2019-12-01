@@ -17,7 +17,7 @@ class MealCell: UITableViewCell {
   func setup(meal: Meal) {
 
     dateLabel.text = meal.date.toString()
-    foodLabel.text = "\(meal.food) \(meal.amount)g"
+    foodLabel.text = "\(meal.food) \(meal.amount) g"
     userLabel.text = "by \(meal.addedBy.name)"
   }
 }
@@ -27,7 +27,7 @@ extension Date {
   func toString() -> String {
 
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMM dd\nHH:mm"
+    dateFormatter.dateFormat = "HH:mm\nMMM dd"
     return dateFormatter.string(from: self)
   }
 }

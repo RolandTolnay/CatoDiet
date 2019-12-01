@@ -72,18 +72,37 @@ extension UITextField {
 }
 
 extension UIColor {
-  /// 204 9 47 100%
-  open class var appMain: UIColor { #colorLiteral(red: 0.3764705882, green: 0.7490196078, blue: 0.6980392157, alpha: 1) }
+  /// 113 134 64
+  class var appDarkGreen: UIColor { #colorLiteral(red: 0.4431372549, green: 0.5254901961, blue: 0.2509803922, alpha: 1) }
+
+  class var appLightYellow: UIColor { #colorLiteral(red: 0.8235294118, green: 0.8117647059, blue: 0.537254902, alpha: 1) }
+
+  class var appTeal: UIColor { #colorLiteral(red: 0.368627451, green: 0.7254901961, blue: 0.6823529412, alpha: 1) }
+
+  class var appMain: UIColor { .appTeal }
+
   /// 189 189 189 100%
   open class var appLightGray: UIColor { #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1) }
   /// 120 122 122 100%
   open class var appMediumGray: UIColor { #colorLiteral(red: 0.4705882353, green: 0.4784313725, blue: 0.4784313725, alpha: 1) }
-  /// 85 86 90 100%
-  open class var appDarkGray: UIColor { #colorLiteral(red: 0.3333333333, green: 0.337254902, blue: 0.3529411765, alpha: 1) }
-  /// 255 255 255 50%
-  open class var appWhiteHalfAlpha: UIColor { #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5) }
-  /// 245 58 58 100%
-  open class var appErrorRed: UIColor { #colorLiteral(red: 0.9607843137, green: 0.2274509804, blue: 0.2274509804, alpha: 1) }
 
-  open class var appLightBrown: UIColor { #colorLiteral(red: 0.8549019608, green: 0.8352941176, blue: 0.5490196078, alpha: 1) }
+  open class var appDarkGray: UIColor { #colorLiteral(red: 0.3333333333, green: 0.337254902, blue: 0.3529411765, alpha: 1) }
+
+  class var gradientStart: UIColor { #colorLiteral(red: 0.4039215686, green: 0.6980392157, blue: 0.4352941176, alpha: 1) }
+
+  class var gradientEnd: UIColor { #colorLiteral(red: 0.2980392157, green: 0.6352941176, blue: 0.8039215686, alpha: 1) }
+}
+
+extension Double {
+
+  /// Returns rounded to specified number of decimals.
+  func rounded(decimals: Int = 3) -> Double {
+    let poweredBy = pow(Double(10), Double(decimals))
+    return Double(Int(self * poweredBy)) / poweredBy
+  }
+
+  /// A textual representation of this instance with added trailing precision in decimals.
+  func description(decimals: Int = 3) -> String {
+    return String(format: "%.\(decimals)f", self)
+  }
 }
