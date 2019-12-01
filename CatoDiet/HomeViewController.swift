@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     setupTextFields()
     hideKeyboardWhenTappedAround()
     updateFeedEnabled()
+    loadingScreen.changeActivityIndicatorColor(to: .appMain)
 
     amountBarControl.value = 15
     amountBarControl.onValueChanged = { [weak self] amount in
@@ -76,6 +77,7 @@ class HomeViewController: UIViewController {
                             for: .editingChanged)
     foodTextField.addBottomBorder()
     foodTextField.tintColor = .appMain
+    foodTextField.textColor = .appMain
 
     amountTextField.text = "\(Int(amountBarControl.value))"
     amountTextField.tintColor = .appMain

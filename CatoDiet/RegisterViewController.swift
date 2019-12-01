@@ -22,7 +22,8 @@ class RegisterViewController: UIViewController {
     usernameTextField.addTarget(self,
                                 action: #selector(onUsernameChanged),
                                 for: .editingChanged)
-    usernameTextField.tintColor = .appTeal
+    usernameTextField.tintColor = .appMain
+    usernameTextField.textColor = .appMain
     nextButton.isEnabled = false
     hideKeyboardWhenTappedAround()
   }

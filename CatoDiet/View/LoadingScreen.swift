@@ -34,8 +34,8 @@ class LoadingScreen: DesignableView {
     leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
     rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
     
-    backgroundColor = .black
-    alpha = 0.3
+    backgroundColor = .white
+    alpha = 0.6
     translatesAutoresizingMaskIntoConstraints = false
   }
 
